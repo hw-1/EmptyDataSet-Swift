@@ -244,7 +244,9 @@ public class EmptyDataSetView: UIView {
                 subviewStrings.append("titleLabel")
                 views[subviewStrings.last!] = titleLabel
                 
-                contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(padding)-[titleLabel(>=0)]-(padding)-|", options: [], metrics: metrics, views: views))
+                let labelWidth = width - CGFloat(padding) * 2.0
+                contentView.addConstraint(NSLayoutConstraint.init(item: titleLabel, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+                contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[titleLabel(\(labelWidth))]", options: [], metrics: metrics, views: views))
             } else {
                 titleLabel.isHidden = true
             }
